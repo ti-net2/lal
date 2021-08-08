@@ -9,6 +9,7 @@
 package httpflv
 
 import "os"
+import "fmt"
 
 // TODO chef: 结构体重命名为FileWriter，文件名重命名为file_writer.go。所有写流文件的（flv,hls,ts）统一重构
 
@@ -18,6 +19,7 @@ type FlvFileWriter struct {
 
 func (ffw *FlvFileWriter) Open(filename string) (err error) {
 	ffw.fp, err = os.Create(filename)
+	fmt.Println("octopus_open:", filename, ",fd:", ffw.fp)
 	return
 }
 
@@ -49,6 +51,7 @@ func (ffw *FlvFileWriter) Dispose() error {
 	if ffw.fp == nil {
 		return ErrHttpflv
 	}
+	fmt.Println("octopus_close,fd:", ffw.fp)
 	return ffw.fp.Close()
 }
 

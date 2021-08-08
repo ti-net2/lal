@@ -18,6 +18,7 @@ type FlvFileWriter struct {
 }
 
 func (ffw *FlvFileWriter) Open(filename string) (err error) {
+	var sun string
 	ffw.fp, err = os.Create(filename)
 	fmt.Println("octopus_open:", filename, ",fd:", ffw.fp)
 	return
